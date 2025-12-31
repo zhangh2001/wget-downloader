@@ -3,7 +3,7 @@
  # @Author       : ZHANG Hua (zhangh23@mails.tsinghua.edu.cn)
  # @Date         : 2025-12-30 12:09:22
  # @LastEditors  : ZHANG Hua (zhangh23@mails.tsinghua.edu.cn)
- # @LastEditTime : 2025-12-30 16:35:17
+ # @LastEditTime : 2025-12-31 16:37:59
  # @Description  : Download file shared script using wget
  # @Usage        : source dld.sh <start_year> <start_month> <start_day> <end_year> <end_month> <end_day>
  # 

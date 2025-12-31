@@ -3,12 +3,26 @@
  # @Author       : ZHANG Hua (zhangh23@mails.tsinghua.edu.cn)
  # @Date         : 2025-12-30 12:09:32
  # @LastEditors  : ZHANG Hua (zhangh23@mails.tsinghua.edu.cn)
- # @LastEditTime : 2025-12-30 17:28:15
+ # @LastEditTime : 2025-12-31 16:37:37
  # @Description  : Download data from Geoscience Data Exchange (GDEX)
  # @Usage        : ./download.sh <dataset_type> <start_year> <start_month> <start_day> <end_year> <end_month> <end_day>
  # 
  # Copyright (c) 2025 by ZHANG Hua, All Rights Reserved. 
 ### 
+
+# -----------------------------------------------------------------------------
+# Validate input arguments
+# -----------------------------------------------------------------------------
+if [[ $# -lt 7 ]]; then
+    echo "Error: Insufficient arguments."
+    echo "Usage: $0 <dataset_type> <start_year> <start_month> <start_day> <end_year> <end_month> <end_day>"
+    echo ""
+    echo "Dataset types:"
+    echo "  ds461.0 - SURFACE_OBS"
+    echo "  ds094.0 - CFSv2"
+    echo "  ds083.2 - FNL"
+    exit 1
+fi
 
 # -----------------------------------------------------------------------------
 # Set download configuration
@@ -42,6 +56,7 @@ case ${DATASET_TYPE} in
         ;;
     *)
         echo "Error: Unsupported dataset type '${DATASET_TYPE}'"
+        echo "Supported types: ds461.0, ds094.0, ds083.2"
         exit 1
         ;;
 esac
@@ -53,6 +68,11 @@ MAX_DAY=31
 # Load shared functions and initialize
 # -----------------------------------------------------------------------------
 source ../src/dld.sh "$@"
+
+# Check if initialization succeeded
+if [[ $? -ne 0 ]]; then
+    exit 1
+fi
 
 # -----------------------------------------------------------------------------
 # Function: build_file_paths
